@@ -14,7 +14,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(500, 500), "Dungeon Redemption");
 
 
 
@@ -57,9 +57,11 @@ int main()
 
 
 
-	sf::CircleShape shape(100.f);
 	//window.setVerticalSyncEnabled(true);
-	shape.setFillColor(sf::Color::Green);
+
+	sf::RectangleShape player(sf::Vector2f(50.f, 50.f));
+	player.setFillColor(sf::Color::Cyan);
+	player.setPosition(225.f, 225.f);
 
 	sf::Clock clock;
 
@@ -103,14 +105,20 @@ int main()
 	#pragma endregion
 
 
-		ImGui::Begin("Hello, world!");
-		ImGui::Button("Look at this pretty button!");
-		ImGui::Text("Hello!");
-		ImGui::End();
+		//ImGui::Begin("Hello, world!");
+		//ImGui::Button("Look at this pretty button!");
+		//ImGui::Text("Hello!");
+		//ImGui::Text("This is some useful text.");
+		//ImGui::End();
 
 		//game code....
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ? window.close() : false; // Convenience close
+		sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? player.move(0.f, -200.f * deltaTimeSeconds) : false;
+		sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? player.move(-200.f * deltaTimeSeconds, 0.f) : false;
+		sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? player.move(0.f, 200.f * deltaTimeSeconds) : false;
+		sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? player.move(200.f * deltaTimeSeconds, 0.f) : false;
 		window.clear();
-		window.draw(shape);
+		window.draw(player);
 
 
 	#pragma region imgui
