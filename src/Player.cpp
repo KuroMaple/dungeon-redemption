@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(sf::Vector2f startPos) {
-	shape.setSize({ 25.f, 25.f });
+	shape.setSize({ 50.f, 50.f });
 	shape.setFillColor(sf::Color::Cyan);
 	shape.setPosition(startPos);
 }
@@ -12,6 +12,9 @@ void Player::handleInput(float deltaTimeSeconds) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) movement.x -= speed * deltaTimeSeconds;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) movement.x += speed * deltaTimeSeconds;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) movement.y += speed * deltaTimeSeconds;
+
+
+	// Collision detection
 
 	shape.move(movement);
 }
