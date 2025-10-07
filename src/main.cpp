@@ -59,9 +59,13 @@ int main()
 
 	//window.setVerticalSyncEnabled(true);
 
-	sf::RectangleShape player(sf::Vector2f(50.f, 50.f));
+	// Player creation
+	sf::RectangleShape player(sf::Vector2f(20.f, 20.f));
 	player.setFillColor(sf::Color::Cyan);
 	player.setPosition(225.f, 225.f);
+
+	// View creation
+	sf::View view(sf::FloatRect(0.f, 0.f, 500.f, 500.f));
 
 	sf::Clock clock;
 
@@ -111,13 +115,41 @@ int main()
 		//ImGui::Text("This is some useful text.");
 		//ImGui::End();
 
-		//game code....
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ? window.close() : false; // Convenience close
-		sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? player.move(0.f, -200.f * deltaTimeSeconds) : false;
-		sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? player.move(-200.f * deltaTimeSeconds, 0.f) : false;
-		sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? player.move(0.f, 200.f * deltaTimeSeconds) : false;
-		sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? player.move(200.f * deltaTimeSeconds, 0.f) : false;
+		/* Game Code Here ***************/
+		// For dev convenience
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ? window.close() : false;
+
+		// Movement logic
+		float speed = 200.f;
+		sf::Vector2f movement(0.f, 0.f);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) movement.y -= speed * deltaTimeSeconds;
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) movement.x -= speed * deltaTimeSeconds;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) movement.x += speed * deltaTimeSeconds;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) movement.y += speed * deltaTimeSeconds;
+		
+
+		// Camera Logic
+		view.setCenter(player.getPosition());
+		window.setView(view);
+
+		player.move(movement);
+
 		window.clear();
+
+		// Drawing tiles
+		for (int x = 0; x < 2000; x += 100)
+		{
+			for (int y = 0; y < 2000; y += 100)
+			{
+				sf::RectangleShape tile(sf::Vector2f(95.f, 95.f));
+				tile.setFillColor(sf::Color(60, 60, 60));
+				tile.setOutlineThickness(2.f);
+				tile.setOutlineColor(sf::Color(30, 30, 30));
+				tile.setPosition(x, y);
+				window.draw(tile);
+			}
+		}
+
 		window.draw(player);
 
 
