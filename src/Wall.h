@@ -6,7 +6,8 @@ class Wall {
 public:
     Wall();
     void draw(sf::RenderWindow& window);
+    std::vector<sf::RectangleShape> walls;
 
 private:
-    std::vector<sf::RectangleShape> walls;
+    
 };

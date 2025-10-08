@@ -13,6 +13,7 @@ private:
 	void processEvents();
 	void update(float deltaTimeSeconds);
 	void render();
+	void handleInput(float deltaTimeSeconds);
 
 	sf::RenderWindow window;
 	sf::View view;
