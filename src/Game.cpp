@@ -1,5 +1,5 @@
 #include "Game.h"
-#include <iostream>
+
 
 Game::Game() : 
 	window(sf::VideoMode(500, 500), "Dungeon Redemption"), 
@@ -29,7 +29,7 @@ void Game::processEvents() {
 }
 
 void Game::update(float deltaTimeSeconds) {
-	handleInput(deltaTimeSeconds);
+	player.handleInput(deltaTimeSeconds, map);
 	view.setCenter(player.getPosition());
 	window.setView(view);
 }
@@ -38,34 +38,5 @@ void Game::render() {
 	window.clear();
 	map.draw(window);
 	player.draw(window);
-	wall.draw(window);
 	window.display();
-}
-
-void Game::handleInput(float deltaTimeSeconds) {
-	
-
-	sf::Vector2f movement(0.f, 0.f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) movement.y -= player.speed * deltaTimeSeconds;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) movement.x -= player.speed * deltaTimeSeconds;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) movement.x += player.speed * deltaTimeSeconds;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) movement.y += player.speed * deltaTimeSeconds;
-
-	// Collisions
-	sf::FloatRect nextPos;
-	for (auto& w : wall.walls) {
-		sf::FloatRect playerBounds = player.shape.getGlobalBounds();
-		sf::FloatRect wallBounds = w.getGlobalBounds();
-		nextPos = playerBounds;
-		nextPos.left += movement.x;
-		nextPos.top += movement.y;
-		if (wallBounds.intersects(nextPos)) {
-			std::cout << "COLLISION" << "\n";
-			return; // return early and dont draw
-		}
-		
-	}
-
-
-	player.shape.move(movement);
 }
