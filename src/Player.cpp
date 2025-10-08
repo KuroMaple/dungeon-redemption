@@ -14,8 +14,7 @@ void Player::handleInput(float deltaTimeSeconds) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) movement.y += speed * deltaTimeSeconds;
 
 
-	// Collision detection
-
+	
 	shape.move(movement);
 }
 

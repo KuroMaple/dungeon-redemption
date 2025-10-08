@@ -37,5 +37,6 @@ void Game::render() {
 	window.clear();
 	map.draw(window);
 	player.draw(window);
+	wall.draw(window);
 	window.display();
 }

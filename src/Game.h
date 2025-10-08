@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Map.h"
+#include "Wall.h"
 
 class Game {
 public:
@@ -18,4 +19,5 @@ private:
 
 	Player player;
 	Map map;
+	Wall wall;
 };
