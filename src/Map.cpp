@@ -1,14 +1,17 @@
 #include "Map.h"
+#include <string>
 
 Map::Map() {
     load();
 }
 
 void Map::load() {
-    // Example: generate a 10x10 grid of tiles
-    const int rows = 10;
-    const int cols = 10;
+    // Example: generate a 26x80 grid of tiles
+    const int rows = 26;
+    const int cols = 80;
     const float tileSize = 50.f;
+
+
     
     // Generate tiles
     for (int y = 0; y < rows; ++y) {
@@ -56,6 +59,12 @@ bool Map::isBlocked(sf::FloatRect nextPos) const {
         if (wallBounds.intersects(nextPos)) {
             return true;
         }
+    }
+
+    // Check if off grid
+    // TODO: update magic numbers when chamber size is more defined
+    if (nextPos.left < 0 || nextPos.left > 3950 || nextPos.top < 0 || nextPos.top > 1250) {
+        return true;
     }
     return false;
 }

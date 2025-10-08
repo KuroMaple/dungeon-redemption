@@ -14,4 +14,5 @@ public:
 private:
     std::vector<sf::RectangleShape> tiles;
     std::vector<sf::RectangleShape> walls;
+
 };
