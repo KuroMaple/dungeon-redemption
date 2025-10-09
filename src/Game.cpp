@@ -3,10 +3,10 @@
 
 Game::Game() : 
 	window(sf::VideoMode(500, 500), "Dungeon Redemption"), 
-	view(sf::FloatRect(0.f, 0.f, 500.f, 500.f)),
+	view(sf::Vector2f(0.f, 0.f), sf::Vector2f(500.f, 500.f)),
 	player(sf::Vector2f(0.f, 0.f))
 {
-	//window.setVerticalSyncEnabled(true);
+
 }
 
 void Game::run() {
@@ -24,6 +24,10 @@ void Game::processEvents() {
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window.close();
+		}
+		else if(event.type == sf::Event::Resized){
+			auto newWindowSize = window.getSize();
+			view.setSize(sf::Vector2f(newWindowSize.x, newWindowSize.y));
 		}
 	}
 }
