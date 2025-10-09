@@ -6,16 +6,9 @@ Map::Map() {
 }
 
 void Map::load() {
-    // Example: generate a 26x80 grid of tiles
-    const int rows = 26;
-    const int cols = 80;
-    const float tileSize = 50.f;
-
-
-    
     // Generate tiles
-    for (int y = 0; y < rows; ++y) {
-        for (int x = 0; x < cols; ++x) {
+    for (int y = 0; y < ROWS; ++y) {
+        for (int x = 0; x < COLS; ++x) {
             sf::RectangleShape tile(sf::Vector2f(tileSize, tileSize));
             tile.setPosition(x * tileSize, y * tileSize);
 
@@ -29,7 +22,7 @@ void Map::load() {
         }
     }
 
-    // Generate walls
+    // Generate test wall
     sf::RectangleShape wall;
     wall.setFillColor(sf::Color::Green);
     wall.setSize(sf::Vector2f(50.f, 50.f));
@@ -51,7 +44,11 @@ void Map::draw(sf::RenderWindow& window) {
     }
 }
 
-bool Map::isBlocked(sf::FloatRect nextPos) const {
+
+/*
+    Assumes player sprite is a sqaure
+*/
+bool Map::isCollision(sf::FloatRect nextPos, float playerSize) const {
     for (auto& w : walls) {
 
         sf::FloatRect wallBounds = w.getGlobalBounds();
@@ -62,8 +59,9 @@ bool Map::isBlocked(sf::FloatRect nextPos) const {
     }
 
     // Check if off grid
-    // TODO: update magic numbers when chamber size is more defined
-    if (nextPos.left < 0 || nextPos.left > 3950 || nextPos.top < 0 || nextPos.top > 1250) {
+    float leftBound = tileSize * COLS - playerSize;
+    float topBound = tileSize * ROWS - playerSize;
+    if (nextPos.left < 0 || nextPos.left > leftBound || nextPos.top < 0 || nextPos.top > topBound) {
         return true;
     }
     return false;

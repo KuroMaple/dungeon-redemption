@@ -2,7 +2,7 @@
 #include <iostream>
 
 Player::Player(sf::Vector2f startPos) {
-	shape.setSize({ 50.f, 50.f });
+	shape.setSize({ size, size });
 	shape.setFillColor(sf::Color::Cyan);
 	shape.setPosition(startPos);
 }
@@ -31,11 +31,15 @@ void Player::handleInput(float deltaTimeSeconds, const Map& map) {
 	nextPos.left += movement.x;
 	nextPos.top += movement.y;
 
-	if (map.isBlocked(nextPos)) {
+	if (map.isCollision(nextPos, getPlayerSize())) {
 		std::cout << "COLLISION" << "\n";
 		return; // return early and dont draw
 	}
 
 
 	shape.move(movement);
+}
+
+float Player::getPlayerSize() {
+	return size;
 }
