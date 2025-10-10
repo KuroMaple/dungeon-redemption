@@ -44,6 +44,10 @@ add_subdirectory(thirdparty/glad)
 # DON'T ADD THE SOURCES BY HAND, they are already added with this macro
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
+# JSON library
+include(FetchContent)
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz)
+FetchContent_MakeAvailable(json)
 
 add_executable("${CMAKE_PROJECT_NAME}")
 
@@ -93,4 +97,5 @@ target_link_libraries("${CMAKE_PROJECT_NAME}"
 	imgui
 	ImGui-SFML::ImGui-SFML
 	glad
+	nlohmann_json::nlohmann_json
 )

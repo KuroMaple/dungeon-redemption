@@ -8,12 +8,10 @@ public:
 	void draw(sf::RenderWindow& window);
 	sf::Vector2f getPosition() const;
 	void handleInput(float deltaTimeSeconds, const Map& map);
-	float getPlayerSize();
+	sf::Vector2u getPlayerSize();
 
 private:
 	float speed = 200.f;
-	float size = 50.f;
-	//sf::RectangleShape shape;
 	sf::Texture texture;
 	sf::Sprite sprite;
 };

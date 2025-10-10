@@ -1,0 +1,11 @@
+{
+  "name": "Swordsman_lvl3",
+  "scale": 2.0,
+  "animations": {
+    "idle_front1": {
+      "path": "textures/player/player_idle_front/Swordsman_lvl3_Idle_front1.png",
+
+      "rect": [ 18, 20, 20, 27 ]
+    }
+  }
+}
