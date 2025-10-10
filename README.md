@@ -13,6 +13,8 @@ This project is a love letter to a younger version of me who didn't believe he c
 
 
 
+## Development Log
+See [DEVLOG.md](DEVLOG.md) for daily progress updates.
 
 
 
