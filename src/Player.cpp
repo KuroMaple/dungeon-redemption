@@ -2,17 +2,19 @@
 #include <iostream>
 
 Player::Player(sf::Vector2f startPos) {
-	shape.setSize({ size, size });
-	shape.setFillColor(sf::Color::Cyan);
-	shape.setPosition(startPos);
+
+	texture.loadFromFile("../../../resources/player_idle_front/Swordsman_lvl3_Idle_front1.png");
+	sprite.setTexture(texture);
+	sprite.scale(sf::Vector2f(2.f, 2.f));
+	sprite.setPosition(startPos);
 }
 
 void Player::draw(sf::RenderWindow& window) {
-	window.draw(shape);
+	window.draw(sprite);
 }
 
 sf::Vector2f Player::getPosition() const {
-	return shape.getPosition();
+	return sprite.getPosition();
 }
 
 void Player::handleInput(float deltaTimeSeconds, const Map& map) {
@@ -25,7 +27,7 @@ void Player::handleInput(float deltaTimeSeconds, const Map& map) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) movement.y += speed * deltaTimeSeconds;
 
 	// Collisions
-	sf::FloatRect playerBounds = shape.getGlobalBounds();
+	sf::FloatRect playerBounds = sprite.getGlobalBounds();
 	sf::FloatRect nextPos;
 	nextPos = playerBounds;
 	nextPos.left += movement.x;
@@ -36,8 +38,7 @@ void Player::handleInput(float deltaTimeSeconds, const Map& map) {
 		return; // return early and dont draw
 	}
 
-
-	shape.move(movement);
+	sprite.move(movement);
 }
 
 float Player::getPlayerSize() {

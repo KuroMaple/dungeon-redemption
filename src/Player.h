@@ -13,6 +13,7 @@ public:
 private:
 	float speed = 200.f;
 	float size = 50.f;
-	sf::RectangleShape shape;
-
+	//sf::RectangleShape shape;
+	sf::Texture texture;
+	sf::Sprite sprite;
 };

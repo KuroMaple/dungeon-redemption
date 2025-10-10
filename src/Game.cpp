@@ -1,5 +1,6 @@
 #include "Game.h"
-
+#include <iostream>
+#include <filesystem>
 
 Game::Game() : 
 	window(sf::VideoMode(500, 500), "Dungeon Redemption"), 
@@ -10,6 +11,9 @@ Game::Game() :
 }
 
 void Game::run() {
+	// Debugging, used to get the file path of the build 
+	// std::cout << std::filesystem::current_path() << std::endl;
+
 	sf::Clock clock;
 	while (window.isOpen()) {
 		float deltaTimeSeconds = clock.restart().asSeconds();
