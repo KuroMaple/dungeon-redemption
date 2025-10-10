@@ -3,6 +3,8 @@
 ## Oct 10
 - Removed extra padding from sprite texture via rectangles and measuring pixels
 - Add json libary
+- Refactor player assets to have data using json congfigs
+
 
 ![State of Game - Oct 9, 2025](./README%20Resources/Bootleg-Measuring-pixels.JPG)
 
