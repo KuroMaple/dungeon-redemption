@@ -1,31 +1,20 @@
 #include "Player.h"
 #include <iostream>
-#include <fstream>
-#include <nlohmann/json.hpp>
+#include "data/JsonHandler.h"
 
 Player::Player(sf::Vector2f startPos) {
-	// Reading texture config info from file
-
-	std::ifstream f(std::string(RESOURCES_PATH) + "config/player.json");
-	nlohmann::json data;
-	f >> data;
-
-	auto idleFront1 = data["animations"]["idle_front1"];
-	std::string texturePath = std::string(RESOURCES_PATH) + idleFront1["path"].get<std::string>();
-	
-	std::vector<int> recVals = idleFront1["rect"].get<std::vector<int>>();
+	PlayerConfig config = JsonHandler::loadPlayerConfig("config/player.json");
 	sf::IntRect visibleRect(
-		recVals[0],
-		recVals[1],
-		recVals[2],
-		recVals[3]
+		config.recVals[0],
+		config.recVals[1],
+		config.recVals[2],
+		config.recVals[3]
 	);
 
-	texture.loadFromFile(texturePath);
+	texture.loadFromFile(config.texturePath);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(visibleRect);
-	float size = data["scale"].get<float>();
-	sprite.scale(size, size);
+	sprite.scale(config.scale, config.scale);
 	sprite.setPosition(startPos);
 }
 
@@ -63,6 +52,5 @@ void Player::handleInput(float deltaTimeSeconds, const Map& map) {
 
 sf::Vector2u Player::getPlayerSize() {
 	auto size = texture.getSize();
-	std::cout << "player size is x: " << size.x << " y: " << size.y << "\n";
 	return size;
 }

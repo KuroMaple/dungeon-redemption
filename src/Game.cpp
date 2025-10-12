@@ -26,12 +26,16 @@ void Game::run() {
 void Game::processEvents() {
 	sf::Event event;
 	while (window.pollEvent(event)) {
-		if (event.type == sf::Event::Closed) {
+		switch (event.type)
+		{
+		case sf::Event::Closed:
 			window.close();
-		}
-		else if(event.type == sf::Event::Resized){
-			auto newWindowSize = window.getSize();
-			view.setSize(sf::Vector2f(newWindowSize.x, newWindowSize.y));
+			break;
+		case sf::Event::Resized:
+			view.setSize(event.size.width, event.size.height);
+			break;
+		default:
+			break;
 		}
 	}
 }

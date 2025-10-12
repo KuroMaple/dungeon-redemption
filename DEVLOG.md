@@ -1,5 +1,8 @@
 # Dev Log
 
+## Oct 12
+- Create json handler utilty tool
+
 ## Oct 10
 - Removed extra padding from sprite texture via rectangles and measuring pixels
 - Add json libary
