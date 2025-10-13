@@ -1,7 +1,9 @@
 # Dev Log
 
 ## Oct 12
-- Create json handler utilty tool
+- Create json handler utilty 
+- Got basic animation working
+- Learned how to use pixel tool to generate useful assets for my game with no padding
 
 ## Oct 10
 - Removed extra padding from sprite texture via rectangles and measuring pixels
