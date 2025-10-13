@@ -41,6 +41,7 @@ void Game::processEvents() {
 }
 
 void Game::update(float deltaTimeSeconds) {
+	player.updateAnimation(deltaTimeSeconds);
 	player.handleInput(deltaTimeSeconds, map);
 	view.setCenter(player.getPosition());
 	window.setView(view);

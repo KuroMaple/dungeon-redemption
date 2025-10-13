@@ -2,20 +2,22 @@
 #include <iostream>
 #include "data/JsonHandler.h"
 
+
 Player::Player(sf::Vector2f startPos) {
 	PlayerConfig config = JsonHandler::loadPlayerConfig("config/player.json");
-	sf::IntRect visibleRect(
-		config.recVals[0],
-		config.recVals[1],
-		config.recVals[2],
-		config.recVals[3]
-	);
 
 	texture.loadFromFile(config.texturePath);
 	sprite.setTexture(texture);
-	sprite.setTextureRect(visibleRect);
+	// animation
+	this->animation = Animation(&texture, sf::Vector2u(12, 1), 0.3f);
+
+	
+	//sprite.setTextureRect(sf::IntRect(textureSize.x * 0, textureSize.y * 0, textureSize.x, textureSize.y));
 	sprite.scale(config.scale, config.scale);
 	sprite.setPosition(startPos);
+
+
+	
 }
 
 void Player::draw(sf::RenderWindow& window) {
@@ -43,7 +45,7 @@ void Player::handleInput(float deltaTimeSeconds, const Map& map) {
 	nextPos.top += movement.y;
 
 	if (map.isCollision(nextPos, getPlayerSize())) {
-		std::cout << "COLLISION" << "\n";
+		//std::cout << "COLLISION" << "\n";
 		return; // return early and dont draw
 	}
 
@@ -52,5 +54,11 @@ void Player::handleInput(float deltaTimeSeconds, const Map& map) {
 
 sf::Vector2u Player::getPlayerSize() {
 	auto size = texture.getSize();
+	size.x /= 12;
 	return size;
+}
+
+void Player::updateAnimation(float deltaTimeSeconds) {
+	this->animation.Update(0, deltaTimeSeconds);
+	this->sprite.setTextureRect(animation.uvRect);
 }
