@@ -1,5 +1,9 @@
 # Dev Log
 
+## Oct 13
+- Add Multi direction animation
+- Update getPlayerSize function to return globals bounds
+	- TODO Bug: Collision check causes player to get stuck when direction is changed while against wall
 ## Oct 12
 - Create json handler utilty 
 - Got basic animation working
