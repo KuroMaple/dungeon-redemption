@@ -7,8 +7,9 @@ using namespace std;
 
 struct PlayerConfig {
 	string name;
-	string texturePath;
+	string frontTexturePath;
+	string rightTexturePath;
+	string leftTexturePath;
+	string backTexturePath;
 	float scale;
-	unordered_map<string, string> animations;
-	vector<int> recVals;
 };

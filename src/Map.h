@@ -9,7 +9,7 @@ public:
     void load();
     void update(float deltaTime);
     void draw(sf::RenderWindow& window);
-    bool isCollision(sf::FloatRect nextPos, sf::Vector2u playerSize) const;
+    bool isCollision(sf::FloatRect nextPos, sf::FloatRect playerSize) const;
 
 private:
     std::vector<sf::RectangleShape> tiles;

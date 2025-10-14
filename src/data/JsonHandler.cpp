@@ -11,12 +11,13 @@ PlayerConfig JsonHandler::loadPlayerConfig(const string& resourcePath) {
 	f >> data;
 
 	PlayerConfig loadedConfig;
-	//loadedConfig.texturePath = string(RESOURCES_PATH) + data["animations"]["idle_front1"]["path"].get<std::string>();
-	//loadedConfig.recVals = data["animations"]["idle_front1"]["rect"].get<std::vector<int>>();
 
-	loadedConfig.texturePath = string(RESOURCES_PATH) + data["location"].get<std::string>();
+	loadedConfig.frontTexturePath = string(RESOURCES_PATH) + data["IdleFront"].get<std::string>();
+	loadedConfig.rightTexturePath = string(RESOURCES_PATH) + data["IdleRight"].get<std::string>();
+	loadedConfig.backTexturePath = string(RESOURCES_PATH) + data["IdleBack"].get<std::string>();
+	loadedConfig.leftTexturePath = string(RESOURCES_PATH) + data["IdleLeft"].get<std::string>();
 
-
+	loadedConfig.name = data["name"];
 	loadedConfig.scale = data["scale"].get<float>();
 	
 	return loadedConfig;

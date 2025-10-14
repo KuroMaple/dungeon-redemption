@@ -48,7 +48,7 @@ void Map::draw(sf::RenderWindow& window) {
 /*
     Assumes player sprite is a sqaure
 */
-bool Map::isCollision(sf::FloatRect nextPos, sf::Vector2u playerSize) const {
+bool Map::isCollision(sf::FloatRect nextPos, sf::FloatRect playerSize) const {
     for (auto& w : walls) {
 
         sf::FloatRect wallBounds = w.getGlobalBounds();
@@ -59,8 +59,8 @@ bool Map::isCollision(sf::FloatRect nextPos, sf::Vector2u playerSize) const {
     }
 
     // Check if off grid
-    float leftBound = tileSize * COLS - playerSize.x + 25;
-    float topBound = tileSize * ROWS - playerSize.y;
+    float leftBound = tileSize * COLS - playerSize.width;
+    float topBound = tileSize * ROWS - playerSize.height;
     if (nextPos.left < 0 || nextPos.left > leftBound || nextPos.top < 0 || nextPos.top > topBound) {
         return true;
     }
