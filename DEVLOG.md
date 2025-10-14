@@ -5,7 +5,7 @@
 - Update getPlayerSize function to return globals bounds
 	- TODO Bug: Collision check causes player to get stuck when direction is changed while against wall\
 	
-	![State of Game - Oct 13, 2025](https://i.imgur.com/JRWMI3im.jpg)
+	![State of Game - Oct 13, 2025](https://i.imgur.com/JRWMI3i.gif)
 ## Oct 12
 - Create json handler utilty 
 - Got basic animation working
