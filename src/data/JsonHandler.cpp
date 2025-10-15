@@ -1,6 +1,7 @@
 #include "JsonHandler.h"
 #include <nlohmann/json.hpp>
 #include <fstream>
+#include <iostream>
 
 using std::string, std::ifstream, nlohmann::json;
 
@@ -21,4 +22,15 @@ PlayerConfig JsonHandler::loadPlayerConfig(const string& resourcePath) {
 	loadedConfig.scale = data["scale"].get<float>();
 	
 	return loadedConfig;
+}
+
+MapConfig JsonHandler::loadMapConfig(const string& resourcePath) {
+	ifstream f(string(RESOURCES_PATH) + resourcePath);
+	json data;
+	f >> data;
+
+	MapConfig config;
+	config.texturePath = data["WallsFloors"];
+	config.tiles = data["tiles"];
+	return config;
 }

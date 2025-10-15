@@ -1,9 +1,8 @@
+#pragma once
 #include <string>
-#include <SFML/Graphics.hpp>
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
 
 struct PlayerConfig {
 	string name;

@@ -1,6 +1,10 @@
+#pragma once
 #include <string>
-#include "../config/PlayerConfig.h"
+#include "MapConfig.h"
+#include "PlayerConfig.h"
+
 class JsonHandler {
 public:
 	static PlayerConfig loadPlayerConfig(const std::string& resourcePath);
+	static MapConfig loadMapConfig(const std::string& resourcePath);
 };

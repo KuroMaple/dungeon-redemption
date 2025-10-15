@@ -4,6 +4,7 @@
 #include "Animation.h"
 #include "Orientation.h"
 #include "data/JsonHandler.h"
+#include <iostream>
 
 class Player {
 public:
