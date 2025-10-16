@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Tilemap.h"
 
 #pragma region imgui
 #include "imgui.h"
@@ -9,11 +10,52 @@
 
 #include "Game.h"
 
-int main() {
-    Game game;
-    game.run();
+int main()
+{
+    // create the window
+    sf::RenderWindow window(sf::VideoMode(512, 512), "Tilemap");
+
+    // define the level with an array of tile indices 
+
+    const int level[25] = {
+        22, 23, 23, 431,432,
+        39, 70, 70, 448, 449,
+        39, 70, 70, 465, 466,
+        56, 138, 138, 138, 138,
+        73, 74, 74, 74, 75,
+    };
+
+
+    // create the tilemap from the level definition
+    Tilemap map;
+    if (!map.load("C:\\Users\\Hashm\\Desktop\\Coding Projects\\dungeon-redemption\\resources\\textures\\map\\walls_floor.png", sf::Vector2u(16, 16), level, 5, 5))
+        return -1;
+
+    // run the main loop
+    while (window.isOpen())
+    {
+        // handle events
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        // draw the map
+        window.clear();
+        window.draw(map);
+        window.display();
+    }
+
     return 0;
 }
+
+//int main() {
+//    Game game;
+//    game.run();
+//    return 0;
+//}
 
 
 //if you want to load OpenGL

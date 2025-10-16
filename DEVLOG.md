@@ -1,5 +1,15 @@
 # Dev Log
 
+## Oct 15
+- Learned how to paint tile sets and mapped tiles of my image to a number
+
+![State of Game - Oct 15, 2025](https://i.imgur.com/Zialz25.png)
+## Oct 14
+- Began experimenting with tiles and maps
+- (It doesnt work yet)
+
+
+![State of Game - Oct 14, 2025](https://i.imgur.com/0JazKBj.gif)
 ## Oct 13
 - Add Multi direction animation
 - Update getPlayerSize function to return globals bounds

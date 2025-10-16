@@ -19,7 +19,7 @@ private:
     std::vector<sf::RectangleShape> walls;
     int COLS = 10;
     int ROWS = 10;
-    float tileSize = 50.f;
+    float tileSize = 32.f;
     sf::Texture tileset;
     sf::Sprite tileSprite;
 };

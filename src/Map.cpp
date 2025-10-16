@@ -56,7 +56,7 @@ void Map::draw(sf::RenderWindow& window) {
                 tileSprite.setTextureRect(sf::IntRect(3, 9, tileSize, tileSize));
             }*/
             
-            tileSprite.setTextureRect(sf::IntRect(3, 9, tileSize, tileSize));
+            tileSprite.setTextureRect(sf::IntRect(2 * tileSize, 3 * tileSize, tileSize, tileSize));
 
             tileSprite.setPosition(j * tileSize, i * tileSize);
             window.draw(tileSprite);
