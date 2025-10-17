@@ -1,5 +1,12 @@
 # Dev Log
 
+## Oct 17
+-
+
+## Oct 16
+- Imported tmx lite to load map files
+
+
 ## Oct 15
 - Learned how to paint tile sets and mapped tiles of my image to a number
 
